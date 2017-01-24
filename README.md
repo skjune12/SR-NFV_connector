@@ -2,9 +2,9 @@
 
 We consider a Service Function Chaining scenario supported by IPv6 Segment Routing. In our scenario, a Service Chain is an ordered set of Virtual Network Functions (VNFs) and each VNF is represented by its IPv6 address. We assume that VNFs are hosted in "NFV nodes". 
 
-In order to support legacy VNFs (which are "SR-unaware") running in a Linux NFV node we introduce the SR-NFV_connector module. 
+The SR-NFV_connector module is used in a Linux NFV node in order to support legacy VNFs (i.e. "SR-unaware" VNFs). 
 
-The SR-NFV_connector allows introduing SR-unaware VNFs in a Service Chain implemented with IPv6 Segment Routing, by removing the Segment Routing encapsulation before handing the packets to the VNF and properly reinserting the SR encapsulation to the packets processed by the VNF. 
+The SR-NFV_connector allows introducing SR-unaware VNFs in a Service Chain implemented with IPv6 Segment Routing. It removes the Segment Routing encapsulation before handing the packets to the VNF and properly reinserts the SR encapsulation to the packets processed by the VNF. 
 
 ## Chaining of SR-unaware VNFs 
 

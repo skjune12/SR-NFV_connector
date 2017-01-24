@@ -1,13 +1,18 @@
 # SR-NFV_connector
-The SR-NFV_connector adapts the behavior of SR-unaware VNFs to the needs of the SRv6-based SFC processing chain. 
+
+We consider a Service Function Chaining scenario supported by IPv6 Segment Routing. In our scenario, a Service Chain is an ordered set of Virtual Network Functions (VNFs) and each VNF is represented by its IPv6 address. We assume that VNFs are hosted in "NFV nodes". 
+
+In order to support legacy VNFs (which are "SR-unaware") running in a Linux NFV node we introduce the SR-NFV_connector module. 
+
+The SR-NFV_connector allows introduing SR-unaware VNFs in a Service Chain implemented with IPv6 Segment Routing, by removing the Segment Routing encapsulation before handing the packets to the VNF and properly reinserting the SR encapsulation to the packets processed by the VNF. 
 
 ## Chaining of SR-unaware VNFs 
 
 In order to replicate the experiment of chaining of SR-unaware VNFs by using the SR_NFV_Connector, we provide a simple VirtualBox testbed using vagrant.
 
-The testbed is composed of three Virtual Machines (VMs)  that represent SR ingress node, NFV node, and SR egress node: 
+The testbed is composed of three Virtual Machines (VMs) that represent SR ingress node, NFV node, and SR egress node: 
 
-**SR ingress node:** processes incoming packets, classifies them, and enforces a per-flow VNF chain; the list of VNF identifiers is applied by encapsulating the original packets in a new IPv6 packets with a SRH reporting as segment list the order list of addresses of the given VNFs
+**SR ingress node:** processes incoming packets, classifies them, and enforces a per-flow VNF chain; the list of VNF identifiers is applied by encapsulating the original packets in a new IPv6 packets with a SRH reporting as segment list the ordered list of addresses of the given VNFs
 
 **SR egress node:** removes the SR encapsulation and forwards the inner packet toward its final destination. This allows the final destination to correctly process the original packet.
 
@@ -17,11 +22,11 @@ The ingress node can also be used to generate traffic (either simple ICMP packet
 
 The NFV node has a VNF running inside a network namespace. The VNF is SR-unaware which means that it has to receive the packets without SR encapsulation. 
 
-The SR_NFV_Connector,  which runs as a kernel module, will be used to de-encapsulate the packets, by removing the SR encapsulation, before being sent to the VNF.
+The SR_NFV_Connector,  which runs as a kernel module, is used to de-encapsulate the packets, by removing the SR encapsulation, before sending them to the VNF.
 
-The VNF processes the packet (in this scenario the VNF just forwards the packet) and sends it back again to the SR_NFV_Connector which will re-insert the SR encapsulation to the packet before sending to the egress node.
+The VNF processes the packet (in this scenario the VNF just forwards the packet) and sends it back again to the SR_NFV_Connector which will re-insert the SR encapsulation to the packet before sending it to the egress node.
 
-The egress node removes SR encapsulation from packets and sends towards final destination.
+The egress node removes SR encapsulation from packets and sends them towards the final destination.
 
 ### Testbed Setup 
 

@@ -38,7 +38,7 @@ $ cd  SR-NFV_connector
 ```
 Add the sr_nfv_connector vagrant box:
 ```
-$ vagrant box add sr-vnf url 
+$ vagrant box add sr-vnf http://cs.gssi.infn.it/files/SFC/sr_nfv_connector.box 
 ```
 start the testbed:
 ```

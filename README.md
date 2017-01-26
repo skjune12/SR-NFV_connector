@@ -68,10 +68,12 @@ $ vagrant ssh nfv
 ```
 The VNF is running inside network namespace to get inside the VNF:
 ```
+$ sudo su
 $ ip netns exec vnf1 bash 
 ```
 Capture the received packets. Packets are received as normal IPv6 packets with next header icmp6 (no SR encapsulation):
 ```
+$ sudo su
 $ tcpdump -vvv
 ``` 
 #### To see packets with SR encapsulation before being de-encapasulated by SR-NFV_connector (or after SR encapsulation being  reinserted to packets coming form the VNF)
@@ -82,10 +84,12 @@ $ vagrant ssh nfv
 ```
 capture packets on either eth1 or eth2. Packets will be in SR encapsulation: 
 ```
+$ sudo su
 $ tcpdump -i eth1 -vvv
 ```
 or ;
 ```
+$ sudo su
 $ tcpdump -i eth2 -vvv
 ```
 ### Performance Evaluation
@@ -111,7 +115,7 @@ We use iperf client to generate 10k udp packet/s each of 1024 byte data size.
 
 From th e terminal of the ingress VM:
 ```
-$ iper3 -6 -u -c cccc::2 -l 1024 -b 80M -t 60
+$ iperf3 -6 -u -c cccc::2 -l 1024 -b 80M -t 60
 ```
 
 It will run for 60 seconds and after taht you will have a report about throughput, loss,… etc.

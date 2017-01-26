@@ -29,8 +29,9 @@ The VNF processes the packet (in this scenario the VNF just forwards the packet)
 The egress node removes SR encapsulation from packets and sends them towards the final destination.
 
 ### Testbed Setup 
+Before starting, please be sure that you have [vagrant](https://www.vagrantup.com/downloads.html) and [virtualbox](https://www.virtualbox.org/wiki/Downloads) installed on your machine.
 
-clone the SR-NFV_connector repository in your machine: 
+Clone the SR-NFV_connector repository in your machine: 
 
 ```
 $ git clone https://github.com/amsalam20/SR-NFV_connector
@@ -40,11 +41,11 @@ Add the sr_nfv_connector vagrant box:
 ```
 $ vagrant box add sr-vnf http://cs.gssi.infn.it/files/SFC/sr_nfv_connector.box 
 ```
-start the testbed:
+Start the testbed:
 ```
 $ vagrant up 
 ```
-It  takes a bit of time …. please be patient 
+It takes a bit of time …. please be patient 
 
 #### Verifying functionality of SR-NFV_connector and its ability to de-encapsulate and re-encapsulate packets
 
@@ -82,12 +83,12 @@ Open a new terminal and log into the NFV node:
 ```
 $ vagrant ssh nfv
 ```
-capture packets on either eth1 or eth2. Packets will be in SR encapsulation: 
+Capture packets on either eth1 or eth2. Packets will be in SR encapsulation: 
 ```
 $ sudo su
 $ tcpdump -i eth1 -vvv
 ```
-or ;
+Or ;
 ```
 $ sudo su
 $ tcpdump -i eth2 -vvv
@@ -105,7 +106,7 @@ Open a new terminal and log into the egress VM:
 ```
 $ vagrant ssh egress 
 ```
-run iperf server
+Run iperf server
 ```
 $ iperf3 -6 -s
 ```
@@ -129,7 +130,7 @@ While iperf test is running you can look at the cpu utilization in the NFV node 
 $ top 
 ```
 
-or you can log top output for further processing
+Or you can log top output for further processing
 
 ```
 $ top -b -d 0.1 -n 600 | grep -i "%Cpu(s)"  > cpu_util_log

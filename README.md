@@ -88,15 +88,71 @@ or ;
 ```
 $ tcpdump -i eth2 -vvv
 ```
-### Notes 
-In the ingress node you can generate any kind of traffic using iperf or any other  traffic generator. We choose icmp packets in the scenario here for simplicity.
+### Performance Evaluation
+In order to get some preliminary performance measures, we run some simple tests using means of iperf.
 
-You can customize resources assigned to any of the VMs by modifying the Vagrantfile 
+Iperf is a commonly used tool for measurements of maximum achievable bandwidth on IP networks. It supports tuning of various parameters related to timing, buffers, and protocol. For each test it reports the bandwidth, loss, and other parameters.
+
+Iperf has a client and server functionality that allows to measure the throughput between two ends. In our test scenario, we run iperf server on the egress node and iperf client on the ingress node.
+
+#### Iperf Server
+Open a new terminal and log into the egress VM:
+
+```
+$ vagrant ssh egress 
+```
+run iperf server
+```
+$ iperf3 -6 -s
+```
+
+#### Iperf Client 
+We use iperf client to generate 10k udp packet/s each of 1024 byte data size.
+
+From th e terminal of the ingress VM:
+```
+$ iper3 -6 -u -c cccc::2 -l 1024 -b 80M -t 60
+```
+
+It will run for 60 seconds and after taht you will have a report about throughput, loss,… etc.
+
+
+### CPU Utilization
+
+While iperf test is running you can look at the cpu utilization in the NFV node by using top linux utility.
+
+```
+$ top 
+```
+
+or you can log top output for further processing
+
+```
+$ top -b -d 0.1 -n 600 | grep -i "%Cpu(s)"  > cpu_util_log
+```
+
+### Comparison to plain SR kernel
+To measure the overhead added by the SR-NFV_connector. You can run the same iperf tests without the SR-NFV_connector and compare the results.
+
+### Unloading SR-NFV_connector
+From the terminal of NFV node:
+```
+$ sudo su 
+$ cd /vagrant/hook 
+$ rmmod hook.ko 
+```
+
+### Notes 
+- In the ingress node you can generate any kind of traffic using iperf or any other traffic generator. We choose icmp packets in the scenario here for simplicity.
+
+- Resources assigned to any of the VMs can be customized by modifying Vagrantfile 
 
 ```
  virtualbox.memory = "1024"
  virtualbox.cpus = "1"
 ```
+- Configuration of ingress node, NFV node , or egress node can be customized by modifying the scripts in the vagrant folder.
 
-You can customize the configuration of ingress node, NFV node , or egress node by modifying the scripts in the vagrant folder.
+- Parameters of iperf client can be customized in order to run the test for longer time, also to generate higher or lower packet rate.
 
+- Parameters of the top command can also be customized to define the number of samples of cpu utilization that you want to log.

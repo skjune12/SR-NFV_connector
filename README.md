@@ -112,9 +112,9 @@ $ iperf3 -6 -s
 ```
 
 #### Iperf Client 
-We use iperf client to generate 10k udp packet/s each of 1024 byte data size.
+In this example, we use iperf client to generate a stream of UDP packet/s each of 1024 byte data size, with a payload data rate of 80MB/s
 
-From th e terminal of the ingress VM:
+From the terminal of the ingress VM:
 ```
 $ iperf3 -6 -u -c cccc::2 -l 1024 -b 80M -t 60
 ```
@@ -148,7 +148,6 @@ $ rmmod hook.ko
 ```
 
 ### Notes 
-- In the ingress node you can generate any kind of traffic using iperf or any other traffic generator. We choose icmp packets in the scenario here for simplicity.
 
 - Resources assigned to any of the VMs can be customized by modifying Vagrantfile 
 

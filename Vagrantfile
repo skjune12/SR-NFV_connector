@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
             # Customize the amount of memory on the VM:
             virtualbox.memory = "1024"
             virtualbox.cpus = "1"
+            virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
             # Enable promiscuous mode
             virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
         end
@@ -34,6 +35,7 @@ Vagrant.configure("2") do |config|
             # Customize the amount of memory on the VM:
             virtualbox.memory = "1024"
             virtualbox.cpus = "1"
+	    virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
             # Enable promiscuous mode
             virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
             virtualbox.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
@@ -53,6 +55,7 @@ Vagrant.configure("2") do |config|
             # Customize the amount of memory on the VM:
             virtualbox.memory = "1024"
             virtualbox.cpus = "1"
+	    virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
             # Enable promiscuous mode
             virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
         end

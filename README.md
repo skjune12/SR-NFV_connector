@@ -59,7 +59,7 @@ $ ip -6 route
 ```
 As a simple example, the ingress node is used to generate icmp traffic
 ```
-$ ping6  CCCC:2 
+$ ping6  CCCC::2 
 ```
 #### To see packets received by VNF after being de-encapsulated by SR-NFV_connector
 

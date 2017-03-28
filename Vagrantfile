@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     # Configure ingress node
     config.vm.define "ingress" do |ingress|
 	ingress.vm.box = "sr-vnf"
-        ingress.vm.network "private_network", ip: "AAAA::2", virtualbox__intnet: "ingress-NFV"
+        ingress.vm.network "private_network", ip: "A::2", virtualbox__intnet: "ingress-NFV"
 
         ingress.vm.provider "virtualbox" do |virtualbox|
             # Customize the amount of memory on the VM:
@@ -28,8 +28,8 @@ Vagrant.configure("2") do |config|
     # Configure NFV node 
     config.vm.define "nfv" do |nfv|
         nfv.vm.box = "sr-vnf"
-        nfv.vm.network "private_network", ip: "AAAA::1", virtualbox__intnet: "ingress-NFV"
-        nfv.vm.network "private_network", ip: "CCCC::1", virtualbox__intnet: "NFV-egress"
+        nfv.vm.network "private_network", ip: "A::1", virtualbox__intnet: "ingress-NFV"
+        nfv.vm.network "private_network", ip: "C::1", virtualbox__intnet: "NFV-egress"
 
         nfv.vm.provider "virtualbox" do |virtualbox|
             # Customize the amount of memory on the VM:
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
     # Configure egress node
     config.vm.define "egress" do |egress|
         egress.vm.box = "sr-vnf"
-        egress.vm.network "private_network", ip: "CCCC::2", virtualbox__intnet: "NFV-egress"
+        egress.vm.network "private_network", ip: "C::2", virtualbox__intnet: "NFV-egress"
 
         egress.vm.provider "virtualbox" do |virtualbox|
             # Customize the amount of memory on the VM:

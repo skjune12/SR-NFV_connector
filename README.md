@@ -59,7 +59,7 @@ $ ip -6 route
 ```
 As a simple example, the ingress node is used to generate icmp traffic
 ```
-$ ping6  CCCC::2 
+$ ping6  C::2 
 ```
 #### To see packets received by VNF after being de-encapsulated by SR-NFV_connector
 
@@ -116,7 +116,7 @@ In this example, we use iperf client to generate a stream of UDP packet/s each o
 
 From the terminal of the ingress VM:
 ```
-$ iperf3 -6 -u -c cccc::2 -l 1024 -b 80M -t 60
+$ iperf3 -6 -u -c C::2 -l 1024 -b 80M -t 60
 ```
 
 It will run for 60 seconds and after taht you will have a report about throughput, loss,… etc.

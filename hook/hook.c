@@ -25,7 +25,7 @@ unsigned char s_mac[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x11};
 unsigned char d_mac[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x22};
 
 uint8_t service_IP[16];
-const char* service_IP_str = "BBBB::2";
+const char* service_IP_str = "B::2";
 
 bool do_recap_1;
 bool do_recap_2;
@@ -235,7 +235,7 @@ int sr_vnf_init(void)
 	printk(KERN_INFO "IP NO \n");
     }
 
-    serv_dev = dev_get_by_name(&init_net, "veth0-nvf-node");
+    serv_dev = dev_get_by_name(&init_net, "veth0-nfv");
 
     // Register the filtering function
     sr_ops_pre.hook = sr_pre_routing;

@@ -1,4 +1,7 @@
-# SR-NFV_connector
+
+# This work has been extended. To get the most recent version please visit the [SREXT] page https://netgroup.github.io/SRv6-net-prog/
+
+## SR-NFV_connector
 
 We consider a Service Function Chaining scenario supported by IPv6 Segment Routing. In our scenario, a Service Chain is an ordered set of Virtual Network Functions (VNFs) and each VNF is represented by its IPv6 address. We assume that VNFs are hosted in "NFV nodes". 
 

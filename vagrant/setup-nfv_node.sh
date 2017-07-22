@@ -24,9 +24,9 @@ ip -6 addr add A::1/64 dev eth1
 ifconfig eth2 up
 ip -6 addr add C::1/64 dev eth2
 
-ip -6 addr add B::1/64 dev veth0-nvf-node
-ifconfig veth0-nvf-node hw ether 00:00:00:00:00:11
-ifconfig veth0-nvf-node up
+ip -6 addr add B::1/64 dev veth0-nfv
+ifconfig veth0-nfv hw ether 00:00:00:00:00:11
+ifconfig veth0-nfv up
 
 
 #enble IPv6 forwarding in VNF1 
